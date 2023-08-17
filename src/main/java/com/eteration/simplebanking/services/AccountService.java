@@ -117,13 +117,6 @@ public class AccountService {
                 new ResourceNotFoundException(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE, accountNumber)));
         AccountDTO accountDTO=accountMapper.accountToAccountDTO(account);
 
-        List<Transaction> transactions=transactionRepository.findAllByAccount_Id(account.getId());
-        List<TransactionDTO> transactionDTOS=transactionMapper.TransactionsToTransactionDTOs(transactions);
-        accountDTO.setTransactions(transactionDTOS);
-
-        List<BillPaymentDTO> billPaymentDTOS=billPaymentMapper.billPaymentToBillPaymentDTO(account.getBillPayments());
-        accountDTO.setBillPayments(billPaymentDTOS);
-
         return accountDTO;
 
     }
